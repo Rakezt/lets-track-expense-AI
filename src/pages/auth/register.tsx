@@ -18,12 +18,12 @@ export default function RegisterPage() {
   const router = useRouter();
   const { user, loading, error } = useAppSelector((state) => state.auth);
 
-  const [name, setName] = useState('');
+  const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = () => {
-    dispatch(registerUser({ name, email, password }));
+    dispatch(registerUser({ username, email, password }));
   };
 
   useEffect(() => {
@@ -45,8 +45,8 @@ export default function RegisterPage() {
             fullWidth
             label='Name'
             margin='normal'
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={username}
+            onChange={(e) => setUserName(e.target.value)}
           />
           <TextField
             fullWidth

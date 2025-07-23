@@ -40,23 +40,22 @@ export const registerUser = createAsyncThunk(
   'auth/register',
   async (
     {
-      name,
+      username,
       email,
       password,
-    }: { name: string; email: string; password: string },
+    }: { username: string; email: string; password: string },
     { rejectWithValue }
   ) => {
     try {
       const res = await axios.post('http://localhost:5030/api/auth/register', {
-        name,
+        username,
         email,
         password,
       });
       return res.data;
     } catch (err: any) {
-      return rejectWithValue(
-        err.response.data.message || 'Registration failed'
-      );
+      console.log(err);
+      return rejectWithValue(err.response.data.message);
     }
   }
 );
