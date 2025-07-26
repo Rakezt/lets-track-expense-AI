@@ -72,9 +72,9 @@ const authSlice = createSlice({
     loadUserFromStorage(state) {
       const token = localStorage.getItem('token');
       const user = localStorage.getItem('user');
-      if (token && user) {
+      if (token) {
         state.token = token;
-        state.user = JSON.parse(user);
+        // state.user = JSON.parse(user);
       }
     },
   },

@@ -1,28 +1,36 @@
 import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import { SessionProvider } from 'next-auth/react';
+import { loadUserFromStorage } from '../store/slices/authSlice';
 import { ThemeProvider, CssBaseline } from '@mui/material';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { createAppTheme } from '../theme/theme';
 import { store } from '../store';
-import DarkModeToggle from '../components/DarkModeToggle';
 
-export default function App({
-  Component,
-  pageProps: { session, ...pageProps },
-}: AppProps) {
-  const [mode, setMode] = useState<'light' | 'dark'>('light');
+import { ThemeModeProvider, useThemeMode } from '../context/ThemeContext';
+
+function InnerApp({ Component, pageProps }: AppProps) {
+  const { mode } = useThemeMode();
   const theme = useMemo(() => createAppTheme(mode), [mode]);
 
+  useEffect(() => {
+    store.dispatch(loadUserFromStorage());
+  }, []);
+
   return (
-    <SessionProvider session={session}>
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <DarkModeToggle mode={mode} setMode={setMode} />
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </Provider>
-    </SessionProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </Provider>
+  );
+}
+
+export default function App(appProps: AppProps) {
+  return (
+    <ThemeModeProvider>
+      <InnerApp {...appProps} />
+    </ThemeModeProvider>
   );
 }

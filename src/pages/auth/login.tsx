@@ -17,12 +17,12 @@ export default function LoginPage() {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { user, loading, error } = useAppSelector((state) => state.auth);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = () => {
-    dispatch(loginUser({ email, password }));
+  const handleSubmit = async () => {
+    await dispatch(loginUser({ email, password })).unwrap();
+    router.push('/expenses');
   };
 
   useEffect(() => {

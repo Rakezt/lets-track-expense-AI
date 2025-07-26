@@ -17,13 +17,13 @@ export default function RegisterPage() {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { user, loading, error } = useAppSelector((state) => state.auth);
-
   const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = () => {
-    dispatch(registerUser({ username, email, password }));
+  const handleSubmit = async () => {
+    await dispatch(registerUser({ username, email, password })).unwrap();
+    router.push('/auth/login');
   };
 
   useEffect(() => {

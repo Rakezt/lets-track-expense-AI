@@ -2,7 +2,7 @@ import { io, Socket } from 'socket.io-client';
 let socket: Socket;
 
 export const initSocket = () => {
-  socket = io(process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000');
+  socket = io(process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5030');
   return socket;
 };
 
