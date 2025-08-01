@@ -24,10 +24,13 @@ export const loginUser = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const res = await axios.post('http://localhost:5030/api/auth/login', {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
       return res.data; // { user, token }
     } catch (err: any) {
       return rejectWithValue(err.response.data.message || 'Login failed');
@@ -47,11 +50,14 @@ export const registerUser = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const res = await axios.post('http://localhost:5030/api/auth/register', {
-        username,
-        email,
-        password,
-      });
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/register`,
+        {
+          username,
+          email,
+          password,
+        }
+      );
       return res.data;
     } catch (err: any) {
       console.log(err);
