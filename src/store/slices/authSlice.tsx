@@ -26,6 +26,7 @@ export const loginUser = createAsyncThunk(
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/login`,
+        // 'http://localhost:5030/api/auth/login'
         {
           email,
           password,
@@ -52,6 +53,7 @@ export const registerUser = createAsyncThunk(
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/register`,
+        // 'http://localhost:5030/api/auth/register'
         {
           username,
           email,
