@@ -53,6 +53,9 @@ export default function Navbar() {
           </Link>
         ) : (
           <>
+            <Link href='/expenses' passHref>
+              <Button sx={{ color: 'white' }}>Expense</Button>
+            </Link>
             <IconButton color='inherit' onClick={handleMenuOpen}>
               <SettingsIcon />
             </IconButton>

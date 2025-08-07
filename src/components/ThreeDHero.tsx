@@ -8,7 +8,7 @@ export default function ThreeDHero() {
       sx={{
         width: '100%',
         height: 400,
-        bgcolor: 'background.paper',
+        bgcolor: '#ffffff',
         textAlign: 'center',
       }}
     >

@@ -19,7 +19,13 @@ export default function Home() {
       <Navbar />
       <ThreeDHero />
 
-      <Box sx={{ py: 10, bgcolor: '#f5f7fa', textAlign: 'center' }}>
+      <Box
+        sx={(theme) => ({
+          py: 10,
+          textAlign: 'center',
+          bgcolor: theme.palette.mode === 'dark' ? 'grey.900' : 'grey.100',
+        })}
+      >
         <Container>
           <Typography variant='h2' gutterBottom fontWeight={700}>
             Smarter Expense Tracking with AI
@@ -51,48 +57,64 @@ export default function Home() {
           Everything you need to manage your expenses smarter.
         </Typography>
 
-        <Stack spacing={4}>
+        <Stack
+          direction='row'
+          spacing={6}
+          useFlexGap
+          flexWrap='wrap'
+          justifyContent='center'
+        >
           <FeatureCard
-            icon={<TrendingUp color='primary' />}
+            icon={<TrendingUp fontSize='large' color='primary' />}
             title='AI Categorization'
           >
-            Automatically tag expenses with intelligent suggestions and learn
-            from your habits.
+            Automatically tag expenses using smart AI that adapts to your
+            habits.
           </FeatureCard>
 
           <FeatureCard
-            icon={<Shield color='secondary' />}
+            icon={<Shield fontSize='large' color='primary' />}
             title='Bank-Level Security'
           >
-            All your data is encrypted with military-grade security. You're in
-            control.
+            Your data is protected with industry-leading encryption.
           </FeatureCard>
 
           <FeatureCard
-            icon={<Star color='warning' />}
+            icon={<Star fontSize='large' color='primary' />}
             title='Insightful Dashboards'
           >
-            Instantly visualize your finances with professional charts and
-            reports.
+            Visualize your spending patterns with rich analytics.
           </FeatureCard>
 
           <FeatureCard
-            icon={<ThumbUpAlt color='success' />}
+            icon={<ThumbUpAlt fontSize='large' color='primary' />}
             title='Seamless Experience'
           >
-            Simple, intuitive UI that works beautifully on both mobile and
-            desktop.
+            Intuitive design for smooth tracking on any device.
           </FeatureCard>
         </Stack>
       </Container>
 
       {/* Testimonials */}
-      <Box sx={{ bgcolor: '#fafafa', py: 10 }}>
+      <Box
+        sx={(theme) => ({
+          py: 10,
+          bgcolor: theme.palette.mode === 'dark' ? 'grey.800' : 'grey.50',
+        })}
+      >
         <Container>
           <Typography variant='h4' align='center' gutterBottom fontWeight={600}>
             Trusted by Budget-Conscious People Like You
           </Typography>
-          <Stack spacing={4} sx={{ mt: 6 }}>
+
+          <Stack
+            direction='row'
+            spacing={4}
+            useFlexGap
+            flexWrap='wrap'
+            justifyContent='center'
+            sx={{ mt: 6 }}
+          >
             <TestimonialCard
               name='Ayesha S.'
               quote='I’ve saved so much since I started using this! The charts and weekly breakdowns are game changers.'
@@ -105,12 +127,22 @@ export default function Home() {
               name='Liam P.'
               quote='Finally something that actually helps me understand where my money goes each month.'
             />
+            <TestimonialCard
+              name='Sofia R.'
+              quote='User-friendly, reliable, and incredibly insightful. Highly recommended for anyone managing a budget.'
+            />
           </Stack>
         </Container>
       </Box>
 
       {/* Final CTA */}
-      <Box sx={{ py: 10, textAlign: 'center', bgcolor: '#f0f4ff' }}>
+      <Box
+        sx={(theme) => ({
+          py: 10,
+          textAlign: 'center',
+          bgcolor: theme.palette.mode === 'dark' ? 'grey.900' : 'blue.50',
+        })}
+      >
         <Container>
           <Typography variant='h4' gutterBottom fontWeight={600}>
             Ready to Take Control of Your Spending?
@@ -133,6 +165,7 @@ export default function Home() {
   );
 }
 
+// FeatureCard Component
 function FeatureCard({
   icon,
   title,
@@ -144,31 +177,46 @@ function FeatureCard({
 }) {
   return (
     <Paper
-      elevation={3}
-      sx={{
+      elevation={2}
+      sx={(theme) => ({
         p: 4,
         borderRadius: 4,
+        textAlign: 'center',
+        flex: '1 1 300px',
+        minWidth: 380,
+        maxWidth: 480,
         display: 'flex',
-        alignItems: 'flex-start',
-        gap: 2,
+        flexDirection: 'column',
+        alignItems: 'center',
+        bgcolor: theme.palette.background.paper,
         transition: 'all 0.3s',
         '&:hover': { boxShadow: 6 },
-      }}
+      })}
     >
-      <Box sx={{ mt: '4px' }}>{icon}</Box>
-      <Box>
-        <Typography variant='h6' fontWeight={600}>
-          {title}
-        </Typography>
-        <Typography color='text.secondary'>{children}</Typography>
-      </Box>
+      <Box sx={{ mb: 2 }}>{icon}</Box>
+      <Typography variant='h6' fontWeight={600} gutterBottom>
+        {title}
+      </Typography>
+      <Typography color='text.secondary' align='center'>
+        {children}
+      </Typography>
     </Paper>
   );
 }
 
+// TestimonialCard Component
 function TestimonialCard({ name, quote }: { name: string; quote: string }) {
   return (
-    <Paper elevation={2} sx={{ p: 3, borderRadius: 3 }}>
+    <Paper
+      elevation={2}
+      sx={{
+        p: 3,
+        borderRadius: 3,
+        flex: '1 1 300px',
+        minWidth: 380,
+        maxWidth: 480,
+      }}
+    >
       <Typography variant='body1' sx={{ fontStyle: 'italic' }}>
         “{quote}”
       </Typography>
