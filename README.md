@@ -9,12 +9,12 @@ With Socket.IO integration, every expense you add, update, or delete is reflecte
 
 
 ## ✨ **Key Highlights**
-*📊 **Real-Time Updates** – Instant expense synchronization using Socket.IO.
-🤖 AI-Powered Insights – Get smart suggestions & expense summaries (coming soon 🚀).
-📈 Interactive Charts – Visualize your spending patterns with dynamic graphs.
-🌙 Dark Mode – Eye-friendly design for day & night tracking.
-🔒 Secure – Built with authentication and backend best practices.
-⚡ Fast & Responsive – Works seamlessly on desktop and mobile.
+📊 **Real-Time Updates** – Instant expense synchronization using Socket.IO.
+🤖 **AI-Powered Insights** – Get smart suggestions & expense summaries (coming soon 🚀).
+📈 **Interactive Charts** – Visualize your spending patterns with dynamic graphs.
+🌙 **Dark Mode** – Eye-friendly design for day & night tracking.
+🔒 **Secure** – Built with authentication and backend best practices.
+⚡ **Fast & Responsive** – Works seamlessly on desktop and mobile.
 
 ---
 
