@@ -8,11 +8,12 @@ import {
   InputLabel,
   FormControl,
   Typography,
+  IconButton,
 } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
 import dayjs from 'dayjs';
 import api from '../utils/axios';
-
 import { useAppDispatch } from '../store/index';
 import { fetchExpenses } from '../store/slices/expenseSlice';
 import { ExpenseCategory, PaymentMode } from '../types/types';
@@ -35,17 +36,7 @@ export default function AddExpenseModal({
   const [description, setDescription] = useState('');
 
   const handleSubmit = async () => {
-    console.log('Submitting new expense:', {
-      date,
-      amount,
-      category,
-      paymentMode,
-      description,
-    });
-    if (amount === '') {
-      console.warn('Amount is empty—aborting');
-      return;
-    }
+    if (amount === '') return;
 
     try {
       const payload = {
@@ -55,15 +46,9 @@ export default function AddExpenseModal({
         paymentMode,
         description: description || undefined,
       };
-      console.log('POST payload:', payload);
 
-      const res = await api.post('/api/expense', payload);
-      console.log('API response:', res.data);
-
-      // Refresh page 1, sorted by date desc (or whatever defaults you like)
+      await api.post('/api/expense', payload);
       await dispatch(fetchExpenses({ sort: 'date', order: 'desc', page: 1 }));
-      console.log('Dispatched fetchExpenses');
-
       onClose();
     } catch (err) {
       console.error('Failed to save expense:', err);
@@ -73,21 +58,37 @@ export default function AddExpenseModal({
   return (
     <Modal open={open} onClose={onClose}>
       <Box
-        sx={{
+        sx={(theme) => ({
           width: 400,
           p: 4,
           bgcolor: 'background.paper',
+          color: 'text.primary',
           mx: 'auto',
           mt: 10,
           borderRadius: 2,
-          boxShadow: 4,
-        }}
+          boxShadow: 24,
+          position: 'relative',
+        })}
       >
+        {/* Close (X) Button */}
+        <IconButton
+          aria-label='close'
+          onClick={onClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: 'text.secondary',
+          }}
+          size='large'
+        >
+          <CloseIcon />
+        </IconButton>
+
         <Typography variant='h6' gutterBottom>
           New Expense
         </Typography>
 
-        {/* Date */}
         <TextField
           fullWidth
           label='Date'
@@ -98,7 +99,6 @@ export default function AddExpenseModal({
           InputLabelProps={{ shrink: true }}
         />
 
-        {/* Category */}
         <FormControl fullWidth sx={{ mb: 2 }}>
           <InputLabel id='category-label'>Category</InputLabel>
           <Select
@@ -115,7 +115,6 @@ export default function AddExpenseModal({
           </Select>
         </FormControl>
 
-        {/* Payment Mode */}
         <FormControl fullWidth sx={{ mb: 2 }}>
           <InputLabel id='payment-label'>Payment Mode</InputLabel>
           <Select
@@ -132,7 +131,6 @@ export default function AddExpenseModal({
           </Select>
         </FormControl>
 
-        {/* Amount */}
         <TextField
           fullWidth
           label='Amount'
@@ -144,7 +142,6 @@ export default function AddExpenseModal({
           sx={{ mb: 2 }}
         />
 
-        {/* Description */}
         <TextField
           fullWidth
           label='Description (optional)'

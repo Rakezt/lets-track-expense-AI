@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Modal,
   Box,
@@ -6,47 +6,100 @@ import {
   TextField,
   Button,
   Stack,
+  IconButton,
 } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import api from '../utils/axios';
 import { useAppDispatch } from '../store';
 import { fetchExpenses } from '../store/slices/expenseSlice';
+import dayjs from 'dayjs';
 
-export default function EditExpenseModal({ open, onClose, expense }: any) {
+export default function EditExpenseModal({
+  open,
+  onClose,
+  expense,
+}: {
+  open: boolean;
+  onClose(): void;
+  expense: any;
+}) {
   const dispatch = useAppDispatch();
   const [form, setForm] = useState({
-    date: expense.date || '',
-    category: expense.category || '',
-    amount: expense.amount || '',
-    description: expense.description || '',
+    date: expense?.date ? dayjs(expense.date).format('YYYY-MM-DD') : '',
+    category: expense?.category ?? '',
+    amount: expense?.amount ?? '',
+    description: expense?.description ?? '',
   });
+
+  useEffect(() => {
+    setForm({
+      date: expense?.date ? dayjs(expense.date).format('YYYY-MM-DD') : '',
+      category: expense?.category ?? '',
+      amount: expense?.amount ?? '',
+      description: expense?.description ?? '',
+    });
+  }, [expense]);
 
   const handleChange = (e: any) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSave = async () => {
-    await api.put(`/api/expense/${expense._id}`, form);
-    dispatch(fetchExpenses({}));
-    onClose();
+    try {
+      const payload = {
+        ...form,
+        date: dayjs(form.date).toISOString(),
+        amount: Number(form.amount),
+      };
+      await api.put(`/api/expense/${expense._id}`, payload);
+      await dispatch(fetchExpenses({ sort: 'date', order: 'desc', page: 1 }));
+      onClose();
+    } catch (err) {
+      console.error('Failed to update expense', err);
+    }
   };
 
   const handleDelete = async () => {
-    await api.delete(`/api/expense/${expense._id}`);
-    dispatch(fetchExpenses({}));
-    onClose();
+    try {
+      await api.delete(`/api/expense/${expense._id}`);
+      await dispatch(fetchExpenses({ sort: 'date', order: 'desc', page: 1 }));
+      onClose();
+    } catch (err) {
+      console.error('Failed to delete expense', err);
+    }
   };
 
   return (
     <Modal open={open} onClose={onClose}>
       <Box
-        sx={{
-          backgroundColor: '#fff',
-          padding: 4,
+        sx={(theme) => ({
+          width: 500,
+          maxWidth: '90%',
+          p: 4,
+          bgcolor: 'background.paper',
+          color: 'text.primary',
+          mx: 'auto',
+          mt: 10,
           borderRadius: 2,
-          maxWidth: 500,
-          margin: '100px auto',
-        }}
+          boxShadow: 24,
+          position: 'relative',
+        })}
       >
+        {/* Close (X) Button */}
+        <IconButton
+          aria-label='close'
+          onClick={onClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: 'text.secondary',
+          }}
+          size='large'
+        >
+          <CloseIcon />
+        </IconButton>
+
         <Typography variant='h6' gutterBottom>
           Edit Expense
         </Typography>
@@ -56,15 +109,17 @@ export default function EditExpenseModal({ open, onClose, expense }: any) {
             label='Date'
             type='date'
             name='date'
-            value={form.date.slice(0, 10)}
+            value={form.date}
             onChange={handleChange}
             InputLabelProps={{ shrink: true }}
+            fullWidth
           />
           <TextField
             label='Category'
             name='category'
             value={form.category}
             onChange={handleChange}
+            fullWidth
           />
           <TextField
             label='Amount'
@@ -72,12 +127,14 @@ export default function EditExpenseModal({ open, onClose, expense }: any) {
             name='amount'
             value={form.amount}
             onChange={handleChange}
+            fullWidth
           />
           <TextField
             label='Description'
             name='description'
             value={form.description}
             onChange={handleChange}
+            fullWidth
           />
 
           <Stack direction='row' spacing={2} justifyContent='space-between'>
