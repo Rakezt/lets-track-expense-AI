@@ -25,13 +25,10 @@ export const loginUser = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const res = await axios.post(
-        `https://lets-track-expense-be.onrender.com/api/auth/login`,
-        {
-          email,
-          password,
-        }
-      );
+      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, {
+        email,
+        password,
+      });
       return res.data; // { user, token }
     } catch (err: any) {
       return rejectWithValue(err.response.data.message || 'Login failed');
