@@ -114,7 +114,9 @@ The **Google Gemini API** is integrated to analyze and summarize your expense pa
 
 | Dashboard                                                                                              | Expense Chart                                                                                           |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
-| <img width="400" height="250" alt="Dashboard" src="https://github.com/user-attachments/assets/720c1dbb-1afc-4830-a995-7d4abcf858c2" /> | <img width="400" height="250" alt="Expense Chart" src="https://github.com/user-attachments/assets/1653b7a9-86c2-478f-bb10-99d5c4600720" /> | <img width="1897" height="835" alt="add expense" src="https://github.com/user-attachments/assets/562c0e07-1de4-47d4-a8cb-07db31269040" /> | <img width="1898" height="869" alt="dark-mode" src="https://github.com/user-attachments/assets/7bacede3-c635-4e36-94fb-d78c4e657768" /> |
+| <img width="400" height="250" alt="Dashboard" src="https://github.com/user-attachments/assets/720c1dbb-1afc-4830-a995-7d4abcf858c2" /> | <img width="400" height="250" alt="Expense Chart" src="https://github.com/user-attachments/assets/1653b7a9-86c2-478f-bb10-99d5c4600720" /> |
+| Add Expense                                                                                             | Dark Mode                                                                                               |
+| <img width="400" height="250" alt="Add Expense" src="https://github.com/user-attachments/assets/562c0e07-1de4-47d4-a8cb-07db31269040" /> | <img width="400" height="250" alt="Dark Mode" src="https://github.com/user-attachments/assets/7bacede3-c635-4e36-94fb-d78c4e657768" /> |
 
 
 
