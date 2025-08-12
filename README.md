@@ -1,72 +1,113 @@
-# Expense Tracker
+A full-stack MERN application for managing expenses with real-time updates powered by Socket.IO. It also includes AI-powered expense summarization using the Google Gemini API (feature implemented).
 
-A modern, feature-rich expense tracking application built with **Next.js 15**, **Redux Toolkit**, **TypeScript**, and **Chart.js**, designed to help you manage and visualize your expenses effortlessly.
+🚀 Tech Stack
 
-## 🚀 Tech Stack
+Frontend
 
-* **Frontend**: Next.js 15, React 18, TypeScript
-* **State Management**: Redux Toolkit
-* **Styling**: Material MUI
-* **Charts & Graphs**: Chart.js, React Chart.js 
-* **Backend API Integration**: Axios
-* **Data Fetching**: createAsyncThunk (Redux Toolkit)
+Next.js 15 (React Framework)
 
-## ✨ Features
+TypeScript
 
-* Add, edit, and delete expenses
-* Filter expenses by week, month, or year
-* Dynamic charts for visualizing expenses
-* Responsive and professional UI
-* API-driven architecture
+Redux Toolkit for state management
 
-## 📦 Installation
+Chart.js / Recharts for data visualization
 
-```bash
-# Clone the repository
-git clone https://github.com/your-username/expense-tracker.git
+Material-UI for UI components
 
-# Navigate into the project folder
-cd expense-tracker
+Backend
 
-# Install dependencies
-npm install
-```
+Node.js
 
-## ⚙️ Environment Setup
+Express.js
 
-Create a `.env.local` file in the root directory and configure your API endpoint:
+MongoDB with Mongoose
 
-```
+Socket.IO for real-time updates
+
+Google Gemini API for expense summarization
+
+CORS for API security
+
+📌 Features
+
+Add, edit, delete expenses
+
+Real-time updates when new expenses are added
+
+Filter expenses by week / month / year
+
+Dynamic charts for visualizing expenses
+
+AI-powered expense summary using Google Gemini API
+
+⚙️ Installation & Setup
+
+1️⃣ Clone the repository
+
+git clone https://github.com/your-username/mern-expense-tracker.git
+cd mern-expense-tracker
+
+2️⃣ Setup environment variables
+
+Create a .env file in both frontend and backend directories.
+
+Backend .env
+
+MONGO_URI=your_mongodb_connection_string
+GEMINI_API_KEY=your_gemini_api_key
+PORT=5000
+
+Frontend .env.local
+
 NEXT_PUBLIC_API_URL=http://localhost:5000
-```
 
-## 🏃‍♂️ Running the Application
+3️⃣ Install dependencies
 
-```bash
-# Development mode
+# Install frontend dependencies
+cd frontend
+npm install
+
+# Install backend dependencies
+cd ../backend
+npm install
+
+4️⃣ Run the application
+
+# Start backend server
+cd backend
 npm run dev
 
-# Production build
-npm run build
-npm start
-```
+# Start frontend
+cd ../frontend
+npm run dev
 
-## 📝 How to Register & Use
+App will be running at: http://localhost:3000
 
-1. **Register**: Click the *Sign Up* button on the homepage and fill in your details.
-2. **Login**: Use your registered credentials to log in.
-3. **Add Expenses**: Navigate to the dashboard and click *Add Expense*.
-4. **Filter Data**: Use the dropdown menu to filter expenses by week, month, or year.
-5. **View Charts**: See real-time updates on the expense chart.
+📝 Usage Guide
 
-## 📊 Filtering & Charts
+Register/Login to your account.
 
-The application dynamically updates the chart when you switch between **Week**, **Month**, and **Year** filters.
+Add Expenses by filling in name, amount, and category.
 
-## 📜 License
+Use the dropdown filter to view expenses for a week, month, or year.
 
-This project is licensed under the MIT License.
+Charts dynamically update based on your selection.
 
----
+Real-time updates appear instantly for all connected clients.
 
-**Happy Tracking!** 💰
+AI summary of your spending patterns is generated automatically.
+
+📡 Real-Time Updates
+
+Implemented using Socket.IO to provide instant expense updates without refreshing.
+
+📊 Future Improvements
+
+Export expense data to Excel/CSV
+
+Add multi-user group expense tracking
+
+More advanced AI insights
+
+💡 Developed with ❤️ using the MERN Stack & Google Gemini API.
+
