@@ -112,13 +112,9 @@ The **Google Gemini API** is integrated to analyze and summarize your expense pa
 
 ## 📸 **Screenshots**
 
-| Dashboard                                         | Expense Chart                                 |
-| ------------------------------------------------- | --------------------------------------------- |
-| (<img width="400" height="250" alt="image" src="https://github.com/user-attachments/assets/720c1dbb-1afc-4830-a995-7d4abcf858c2" />
-) (<img width="400" height="250" alt="image" src="https://github.com/user-attachments/assets/1653b7a9-86c2-478f-bb10-99d5c4600720" />
-/400x250) |
-
----
+| Dashboard                                                                                              | Expense Chart                                                                                           |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| <img width="400" height="250" alt="Dashboard" src="https://github.com/user-attachments/assets/720c1dbb-1afc-4830-a995-7d4abcf858c2" /> | <img width="400" height="250" alt="Expense Chart" src="https://github.com/user-attachments/assets/1653b7a9-86c2-478f-bb10-99d5c4600720" /> |
 
 
 
