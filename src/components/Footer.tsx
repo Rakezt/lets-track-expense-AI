@@ -4,7 +4,11 @@ export default function Footer() {
   return (
     <Box component='footer' sx={{ py: 2, textAlign: 'center' }}>
       <Typography variant='body2'>
-        Built with ❤️ by Rakezt. Source on <Link href='#'>GitHub</Link>.
+        Built with ❤️ by Rakezt. Source on{' '}
+        <Link href='https://github.com/Rakezt/lets-track-expense-AI'>
+          GitHub
+        </Link>
+        .
       </Typography>
     </Box>
   );

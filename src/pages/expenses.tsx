@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Container, Box, Typography, Button } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '../store/index';
-import { fetchExpenses } from '../store/slices/expenseSlice';
+import { fetchAllExpenses, fetchExpenses } from '../store/slices/expenseSlice';
 import { initSocket } from '../utils/socket';
 import AddExpenseModal from '../components/AddExpenseModal';
 
@@ -12,7 +12,8 @@ import ExpenseTable from '../components/ExpensesTable';
 export default function ExpensesPage() {
   const dispatch = useAppDispatch();
   const token = useAppSelector((s) => s.auth.token);
-  const expenses = useAppSelector((s) => s.expenses.items);
+
+  const allExpenses = useAppSelector((s) => s.expenses.allItems);
   const router = useRouter();
 
   const [range, setRange] = useState<'week' | 'month' | 'year'>('month');
@@ -41,7 +42,9 @@ export default function ExpensesPage() {
     };
   }, [token, dispatch, router]);
 
-  // Prepare line chart data
+  useEffect(() => {
+    dispatch(fetchAllExpenses());
+  }, [dispatch]);
 
   return (
     <Box>
@@ -55,7 +58,7 @@ export default function ExpensesPage() {
         </Box>
         <ChartSection
           range={range}
-          expenses={expenses}
+          expenses={allExpenses}
           onRangeChange={(r) => setRange(r)}
         />
 

@@ -12,8 +12,10 @@ import Navbar from '../components/Navbar';
 import ThreeDHero from '../components/ThreeDHero';
 import Footer from '../components/Footer';
 import { Star, Shield, TrendingUp, ThumbUpAlt } from '@mui/icons-material';
+import { useAppSelector } from '../store';
 
 export default function Home() {
+  const token = useAppSelector((s) => s.auth.token);
   return (
     <>
       <Navbar />
@@ -40,9 +42,15 @@ export default function Home() {
           </Typography>
           <Box sx={{ mt: 4 }}>
             <Link href='/auth/register' passHref>
-              <Button variant='contained' size='large'>
-                Get Started for Free
-              </Button>
+              {!token ? (
+                <>
+                  <Button variant='contained' size='large'>
+                    Get Started for Free
+                  </Button>
+                </>
+              ) : (
+                <></>
+              )}
             </Link>
           </Box>
         </Container>
@@ -152,9 +160,15 @@ export default function Home() {
           </Typography>
           <Box sx={{ mt: 4 }}>
             <Link href='/auth/register' passHref>
-              <Button variant='contained' size='large' color='primary'>
-                Join Now
-              </Button>
+              {!token ? (
+                <>
+                  <Button variant='contained' size='large' color='primary'>
+                    Join Now
+                  </Button>
+                </>
+              ) : (
+                <></>
+              )}
             </Link>
           </Box>
         </Container>

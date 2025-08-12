@@ -14,6 +14,7 @@ import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../store';
 import { fetchExpenses } from '../store/slices/expenseSlice';
+import EditExpenseModal from './EditExpenseModal';
 
 type SortOption = {
   value: string;
@@ -58,6 +59,9 @@ export default function ExpenseTable() {
   const [selectedSort, setSelectedSort] = useState<SortOption>(sortOptions[0]);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const [selectedExpense, setSelectedExpense] = useState<any | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
     dispatch(
       fetchExpenses({
@@ -75,6 +79,11 @@ export default function ExpenseTable() {
   };
 
   const totalPages = Math.ceil(total / 10);
+
+  const handleOpenEditModal = (expense: any) => {
+    setSelectedExpense(expense);
+    setIsModalOpen(true);
+  };
 
   return (
     <Box mt={4}>
@@ -97,7 +106,6 @@ export default function ExpenseTable() {
           ))}
         </Select>
       </Box>
-
       <Table>
         <TableHead>
           <TableRow>
@@ -110,14 +118,22 @@ export default function ExpenseTable() {
           {expenses.map((exp) => (
             <TableRow key={exp._id}>
               <TableCell>{dayjs(exp.date).format('MM/DD/YYYY')}</TableCell>
-              <TableCell>{exp.category}</TableCell>
+              <TableCell
+                sx={{
+                  cursor: 'pointer',
+                  color: 'primary.main',
+                  fontWeight: 'bold',
+                }}
+                onClick={() => handleOpenEditModal(exp)}
+              >
+                {exp.category}
+              </TableCell>
               <TableCell>{exp.amount.toFixed(2)}</TableCell>
               <TableCell>{exp.description ?? 'Not Available'}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-
       {totalPages > 1 && (
         <Box display='flex' justifyContent='center' mt={2}>
           <Pagination
@@ -126,6 +142,13 @@ export default function ExpenseTable() {
             onChange={(_, page) => setCurrentPage(page)}
           />
         </Box>
+      )}{' '}
+      {isModalOpen && (
+        <EditExpenseModal
+          open={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          expense={selectedExpense}
+        />
       )}
     </Box>
   );
