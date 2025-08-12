@@ -9,6 +9,8 @@ import AddExpenseModal from '../components/AddExpenseModal';
 import Navbar from '../components/Navbar';
 import ChartSection from '../components/ChartSection';
 import ExpenseTable from '../components/ExpensesTable';
+import AiSummaryModal from '../components/AISummaryModal';
+import AiSummaryFab from '../components/AISummaryFab';
 export default function ExpensesPage() {
   const dispatch = useAppDispatch();
   const token = useAppSelector((s) => s.auth.token);
@@ -18,6 +20,7 @@ export default function ExpensesPage() {
 
   const [range, setRange] = useState<'week' | 'month' | 'year'>('month');
   const [open, setOpen] = useState(false);
+  const [openAi, setOpenAi] = useState(false);
 
   useEffect(() => {
     if (!token) {
@@ -65,6 +68,8 @@ export default function ExpensesPage() {
         <ExpenseTable />
 
         <AddExpenseModal open={open} onClose={() => setOpen(false)} />
+        <AiSummaryModal open={openAi} onClose={() => setOpenAi(false)} />
+        <AiSummaryFab onClick={() => setOpenAi(true)} />
       </Container>
     </Box>
   );

@@ -23,6 +23,7 @@
     "axios": "^1.10.0",
     "bcryptjs": "^3.0.2",
     "clsx": "^2.1.1",
+    "copy-to-clipboard": "^3.3.3",
     "dayjs": "^1.11.13",
     "framer-motion": "^12.23.12",
     "lottie-react": "^2.4.1",
