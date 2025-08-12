@@ -2,8 +2,6 @@
 
 
 
-> **Track smarter, save better, and analyze faster — now with AI-powered insights!**
->
 > Lets-track-expense-AI is a modern, AI-powered expense tracking application designed for real-time financial monitoring and smarter money management.
 With Socket.IO integration, every expense you add, update, or delete is reflected instantly across all connected devices — no refresh needed.
 
@@ -11,18 +9,11 @@ With Socket.IO integration, every expense you add, update, or delete is reflecte
 
 ✨ Key Highlights
 📊 Real-Time Updates – Instant expense synchronization using Socket.IO.
-
 🤖 AI-Powered Insights – Get smart suggestions & expense summaries (coming soon 🚀).
-
 📈 Interactive Charts – Visualize your spending patterns with dynamic graphs.
-
 🌙 Dark Mode – Eye-friendly design for day & night tracking.
-
 🔒 Secure – Built with authentication and backend best practices.
-
 ⚡ Fast & Responsive – Works seamlessly on desktop and mobile.
-
-
 
 ---
 
