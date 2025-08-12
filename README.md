@@ -1,7 +1,6 @@
 # 💰 **Lets-Track-Expense-AI** 🚀
 
-![Lets Track Expense AI Logo](<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/a5799027-cc53-4a3c-9e0e-720a9be17c58" />
-)
+
 
 > **Track smarter, save better, and analyze faster — now with AI-powered insights!**
 
