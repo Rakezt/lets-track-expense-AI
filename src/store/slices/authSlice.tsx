@@ -8,7 +8,7 @@ interface AuthState {
   loading: boolean;
   error: string | null;
 }
-
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const initialState: AuthState = {
   user: null,
   token: null,
@@ -24,7 +24,7 @@ export const loginUser = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const res = await axios.post('http://localhost:5030/api/auth/login', {
+      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, {
         email,
         password,
       });
@@ -47,7 +47,7 @@ export const registerUser = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const res = await axios.post('http://localhost:5030/api/auth/register', {
+      const res = await axios.post(`${API_BASE_URL}/api/auth/register`, {
         username,
         email,
         password,
