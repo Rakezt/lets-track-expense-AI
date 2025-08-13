@@ -96,23 +96,13 @@ export default function ChartSection({
       <Box
         sx={{
           display: 'flex',
-          justifyContent: 'space-between',
-          mb: 2,
-          alignItems: 'center',
+          justifyContent: {
+            xs: 'space-between',
+            sm: 'flex-end',
+          },
+          mt: 1,
         }}
       >
-        <Select
-          value={range}
-          onChange={(e) =>
-            onRangeChange(e.target.value as 'week' | 'month' | 'year')
-          }
-          size='small'
-        >
-          <MenuItem value='week'>WEEK</MenuItem>
-          <MenuItem value='month'>MONTH</MenuItem>
-          <MenuItem value='year'>YEAR</MenuItem>
-        </Select>
-
         {isMobile && (
           <ButtonGroup variant='outlined' size='small'>
             <Button
@@ -128,7 +118,18 @@ export default function ChartSection({
               Line
             </Button>
           </ButtonGroup>
-        )}
+        )}{' '}
+        <Select
+          value={range}
+          onChange={(e) =>
+            onRangeChange(e.target.value as 'week' | 'month' | 'year')
+          }
+          size='small'
+        >
+          <MenuItem value='week'>WEEK</MenuItem>
+          <MenuItem value='month'>MONTH</MenuItem>
+          <MenuItem value='year'>YEAR</MenuItem>
+        </Select>
       </Box>
 
       {/* Charts */}

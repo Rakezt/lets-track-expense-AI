@@ -123,6 +123,7 @@ export default function ExpenseTable() {
                   cursor: 'pointer',
                   color: 'primary.main',
                   fontWeight: 'bold',
+                  textTransform: 'uppercase',
                 }}
                 onClick={() => handleOpenEditModal(exp)}
               >
