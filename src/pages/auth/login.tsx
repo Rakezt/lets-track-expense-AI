@@ -38,15 +38,15 @@ export default function LoginPage() {
     setEmail(dummyEmail);
     setPassword(dummyPassword);
 
-    try {
-      await dispatch(
-        loginUser({ email: dummyEmail, password: dummyPassword })
-      ).unwrap();
-      router.push('/expenses');
-    } catch (err) {
-      console.error('Dummy login failed', err);
-      // slice error will show in the Alert
-    }
+    // try {
+    //   await dispatch(
+    //     loginUser({ email: dummyEmail, password: dummyPassword })
+    //   ).unwrap();
+    //   router.push('/expenses');
+    // } catch (err) {
+    //   console.error('Dummy login failed', err);
+    //   // slice error will show in the Alert
+    // }
   };
 
   useEffect(() => {
@@ -91,12 +91,7 @@ export default function LoginPage() {
             justifyContent='flex-end'
             gap={1}
           >
-            <Button
-              variant='outlined'
-              onClick={handleDummyLogin}
-              disabled={loading}
-              startIcon={loading && <CircularProgress size={18} />}
-            >
+            <Button variant='outlined' onClick={handleDummyLogin}>
               Dummy login
             </Button>
 
