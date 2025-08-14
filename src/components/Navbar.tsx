@@ -44,7 +44,7 @@ export default function Navbar() {
           sx={{ flexGrow: 1, cursor: 'pointer' }}
           onClick={() => router.push('/')}
         >
-          AIExpenses
+          Lets track expenses - AI
         </Typography>
 
         {!token ? (

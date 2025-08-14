@@ -1,7 +1,6 @@
 import { Box } from '@mui/material';
 import Lottie from 'lottie-react';
-import analyticsAnimation from '../../public/Little power robot.json'; // Place downloaded JSON file in /public or /assets
-
+import analyticsAnimation from '../../public/Little power robot.json';
 export default function ThreeDHero() {
   return (
     <Box

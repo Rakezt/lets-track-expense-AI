@@ -25,7 +25,6 @@ export default function LoginPage() {
       await dispatch(loginUser({ email, password })).unwrap();
       router.push('/expenses');
     } catch (err) {
-      // error stored in slice -> displayed by <Alert />
       console.error('Login failed', err);
     }
   };
@@ -34,19 +33,8 @@ export default function LoginPage() {
     const dummyEmail = 'rock@rock.com';
     const dummyPassword = '123456';
 
-    // update UI fields so user can see the dummy creds used
     setEmail(dummyEmail);
     setPassword(dummyPassword);
-
-    // try {
-    //   await dispatch(
-    //     loginUser({ email: dummyEmail, password: dummyPassword })
-    //   ).unwrap();
-    //   router.push('/expenses');
-    // } catch (err) {
-    //   console.error('Dummy login failed', err);
-    //   // slice error will show in the Alert
-    // }
   };
 
   useEffect(() => {

@@ -92,12 +92,15 @@ export default function ExpenseTable() {
         justifyContent='space-between'
         alignItems='center'
         mb={2}
+        flexWrap='wrap'
+        gap={1}
       >
         <Typography variant='h6'>Expense History</Typography>
         <Select
           value={selectedSort.value}
           onChange={handleSortChange}
           size='small'
+          sx={{ minWidth: 160 }}
         >
           {sortOptions.map((opt) => (
             <MenuItem key={opt.value} value={opt.value}>
@@ -106,35 +109,39 @@ export default function ExpenseTable() {
           ))}
         </Select>
       </Box>
-      <Table>
-        <TableHead>
-          <TableRow>
-            {['Date', 'Category', 'Amount', 'Description'].map((h) => (
-              <TableCell key={h}>{h}</TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {expenses.map((exp) => (
-            <TableRow key={exp._id}>
-              <TableCell>{dayjs(exp.date).format('MM/DD/YYYY')}</TableCell>
-              <TableCell
-                sx={{
-                  cursor: 'pointer',
-                  color: 'primary.main',
-                  fontWeight: 'bold',
-                  textTransform: 'uppercase',
-                }}
-                onClick={() => handleOpenEditModal(exp)}
-              >
-                {exp.category}
-              </TableCell>
-              <TableCell>{exp.amount.toFixed(2)}</TableCell>
-              <TableCell>{exp.description ?? 'Not Available'}</TableCell>
+      <Box sx={{ overflowX: 'auto' }}>
+        <Table sx={{ minWidth: 500 }}>
+          <TableHead>
+            <TableRow>
+              {['Date', 'Category', 'Amount', 'Description'].map((h) => (
+                <TableCell key={h}>{h}</TableCell>
+              ))}
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {expenses.map((exp) => (
+              <TableRow key={exp._id}>
+                <TableCell>{dayjs(exp.date).format('MM/DD/YYYY')}</TableCell>
+                <TableCell
+                  sx={{
+                    cursor: 'pointer',
+                    color: 'primary.main',
+                    fontWeight: 'bold',
+                    textTransform: 'uppercase',
+                  }}
+                  onClick={() => handleOpenEditModal(exp)}
+                >
+                  {exp.category}
+                </TableCell>
+                <TableCell>{exp.amount.toFixed(2)}</TableCell>
+                <TableCell sx={{ whiteSpace: 'nowrap' }}>
+                  {exp.description ?? 'N/A'}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Box>
       {totalPages > 1 && (
         <Box display='flex' justifyContent='center' mt={2}>
           <Pagination

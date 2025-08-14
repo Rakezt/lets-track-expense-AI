@@ -1,4 +1,3 @@
-// src/store/slices/authSlice.ts
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -17,7 +16,6 @@ const initialState: AuthState = {
   error: null,
 };
 
-// Async login
 export const loginUser = createAsyncThunk(
   'auth/login',
   async (
@@ -29,14 +27,13 @@ export const loginUser = createAsyncThunk(
         email,
         password,
       });
-      return res.data; // { user, token }
+      return res.data;
     } catch (err: any) {
       return rejectWithValue(err.response.data.message || 'Login failed');
     }
   }
 );
 
-// Async register
 export const registerUser = createAsyncThunk(
   'auth/register',
   async (
@@ -75,7 +72,6 @@ const authSlice = createSlice({
       const user = localStorage.getItem('user');
       if (token) {
         state.token = token;
-        // state.user = JSON.parse(user);
       }
     },
   },

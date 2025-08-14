@@ -179,7 +179,6 @@ export default function Home() {
   );
 }
 
-// FeatureCard Component
 function FeatureCard({
   icon,
   title,
@@ -218,7 +217,6 @@ function FeatureCard({
   );
 }
 
-// TestimonialCard Component
 function TestimonialCard({ name, quote }: { name: string; quote: string }) {
   return (
     <Paper

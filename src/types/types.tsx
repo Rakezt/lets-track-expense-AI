@@ -16,15 +16,16 @@ export enum PaymentMode {
   CASH = 'Cash',
   UPI = 'UPI',
   INTERNET_BANKING = 'Internet Banking',
+  CREDIT_CARD = 'Credit Card',
 }
 export interface Expense {
   _id: string;
-  user: string; // or a populated user object if you're using population
+  user: string;
   amount: number;
   category: ExpenseCategory;
   description?: string;
   paymentMode: PaymentMode;
-  date: string; // or Date depending on where it's used
+  date: string;
   createdAt?: string;
   updatedAt?: string;
 }

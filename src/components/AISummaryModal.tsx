@@ -32,7 +32,6 @@ export default function AiSummaryModal({
       setError(null);
       setSummary(null);
       try {
-        // we send { query: 'all' } so backend loads user's expenses
         const res = await api.post('/api/expense/ai/analyze', { query: 'all' });
         setSummary(
           res.data?.insight ||
