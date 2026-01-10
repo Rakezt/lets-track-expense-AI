@@ -41,14 +41,14 @@ export const fetchExpenses = createAsyncThunk<
     total: number;
     page: number;
     totalPages: number;
-  }>(`/api/expense?sort=${sort}&order=${order}&page=${page}&limit=${limit}`);
+  }>(`/api/expenses?sort=${sort}&order=${order}&page=${page}&limit=${limit}`);
   return response.data;
 });
 
 export const fetchAllExpenses = createAsyncThunk<Expense[]>(
   'expenses/fetchAll',
   async () => {
-    const response = await api.get('/api/expense');
+    const response = await api.get('/api/expenses');
     if (Array.isArray(response.data)) return response.data;
     if (response.data && Array.isArray(response.data.data))
       return response.data.data;

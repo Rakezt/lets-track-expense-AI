@@ -47,7 +47,7 @@ export default function AddExpenseModal({
         description: description || undefined,
       };
 
-      await api.post('/api/expense', payload);
+      await api.post('/api/expenses', payload);
       await dispatch(fetchExpenses({ sort: 'date', order: 'desc', page: 1 }));
       onClose();
     } catch (err) {

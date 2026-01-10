@@ -32,7 +32,9 @@ export default function AiSummaryModal({
       setError(null);
       setSummary(null);
       try {
-        const res = await api.post('/api/expense/ai/analyze', { query: 'all' });
+        const res = await api.post('/api/expenses/ai/analyze', {
+          query: 'all',
+        });
         setSummary(
           res.data?.insight ||
             res.data?.insightText ||

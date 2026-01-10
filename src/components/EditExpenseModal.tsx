@@ -51,7 +51,7 @@ export default function EditExpenseModal({
         date: dayjs(form.date).toISOString(),
         amount: Number(form.amount),
       };
-      await api.put(`/api/expense/${expense._id}`, payload);
+      await api.put(`/api/expenses/${expense._id}`, payload);
       await dispatch(fetchExpenses({ sort: 'date', order: 'desc', page: 1 }));
       onClose();
     } catch (err) {
@@ -61,7 +61,7 @@ export default function EditExpenseModal({
 
   const handleDelete = async () => {
     try {
-      await api.delete(`/api/expense/${expense._id}`);
+      await api.delete(`/api/expenses/${expense._id}`);
       await dispatch(fetchExpenses({ sort: 'date', order: 'desc', page: 1 }));
       onClose();
     } catch (err) {
